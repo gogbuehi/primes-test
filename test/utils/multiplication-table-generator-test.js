@@ -3,14 +3,7 @@ const assert                       = require('assert');
 const MultiplicationTableGenerator = locreq('app/utils/multiplication-table-generator');
 
 const CONSTANTS = {
-  intArray : [2,3,5,7,11],
-  multiplicationMatrix : [
-    [  4,  6, 10, 14, 22],
-    [  6,  9, 15, 21, 33],
-    [ 10, 15, 25, 35, 55],
-    [ 14, 21, 35, 49, 77],
-    [ 22, 33, 55, 77,121]
-  ]
+  intArray : [2,3,5,7,11]
 }
 
 const multiplicationMatrix = {
@@ -26,7 +19,14 @@ const multiplicationMatrix = {
     },
     shouldReturnMultiplicationMatrix: () => {
       const matrix = MultiplicationTableGenerator.multiplicationMatrix(CONSTANTS.intArray);
-      assert.deepEqual(matrix, CONSTANTS.multiplicationMatrix);
+      let valuesArray;
+      for(let i = 0; i < matrix.length; i++) {
+        valuesArray = matrix[i];
+        for(let j = 0; j < valuesArray.length; j++) {
+          assert.equal(matrix[i][j], CONSTANTS.intArray[i] * CONSTANTS.intArray[j]);
+          assert.equal(matrix[i][j], matrix[j][i]);
+        }
+      }
     }
   }
 }
