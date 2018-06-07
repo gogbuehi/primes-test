@@ -1,2 +1,28 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<p class="message">{{message}}</p>
+<p>N: {{n}}</p>
+
+<div class="multiplication-table">
+    <div class="col-fixer">
+        <table>
+            {{#each table as |values x|}}
+                {{#unless x}}
+                    <thead>
+                {{/unless}}
+                        <tr class="row-{{x}}">
+                            {{#each values as |value y|}}
+                                <td class="col-{{y}}">{{value}}</td>
+                            {{/each}}
+                        </tr>
+                {{#unless x}}
+                    </thead>
+                {{/unless}}
+            {{else}}
+                <tr>
+                    <td>No table to display.</td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>
+<p>Time Spent Finding Primes: {{timeRunning}}</p>
