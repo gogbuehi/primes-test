@@ -34,5 +34,6 @@ quickly, and make async requests for tables.
 than having the full table as a matrix, the raw data can just be an indexed list of the distinct factor multiples. The
 client-side app can handle retrieving the raw data and building the HTML. This would include only requesting a set of
 factors-multiples that can be reasonably displayed, to deal with payload issues.
+- Better organisation of routes and app overall. The interface parts of the app don't have a design pattern to them.
 
  
