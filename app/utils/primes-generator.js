@@ -15,9 +15,12 @@ var exports = module.exports = {};
  */
 exports.primeTester = (value, primesArray) => {
   let currentPrime;
+  let optimizerValue;
   for (let i = 0; i < primesArray.length; i++) {
     currentPrime = primesArray[i];
+    optimizerValue = Math.floor(value/currentPrime);
     if (value === currentPrime) return true;
+    if (currentPrime > optimizerValue) return true;
     if ((value % currentPrime) === 0) {
       return false;
     }
