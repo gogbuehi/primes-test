@@ -36,10 +36,20 @@ const generateNPrimes = {
       }
     },
     shouldReturnArrayOfNPrimes: () => {
-      const n = 10;
-      let nPrimes = PrimesGenerator.generateNPrimes(n);
+      const n       = 10;
+      const nPrimes = PrimesGenerator.generateNPrimes(n);
 
       assert.deepEqual(CONSTANTS.tenPrimes, nPrimes);
+    },
+    shouldGeneratePrimesQuickly: () => {
+      const n           = 40000;
+      const maximumTime = 100;
+      const startTime   = new Date().getTime();
+      PrimesGenerator.generateNPrimes(n);
+      const endTime     = new Date().getTime();
+      const timeToRun   = endTime-startTime;
+
+      assert(timeToRun < maximumTime, `Generating ${n} primes should take less than ${maximumTime}ms`)
     }
   }
 }
@@ -51,6 +61,7 @@ const describePrimeTester = () => {
 const describeGenerateNPrimes = () => {
   it('should return an array of length n', generateNPrimes.it.shouldReturnArrayLengthOfN);
   it('should return an array of n primes', generateNPrimes.it.shouldReturnArrayOfNPrimes);
+  it('should generate primes quickly', generateNPrimes.it.shouldGeneratePrimesQuickly);
 };
 
 const describePrimesGenerator = () => {
