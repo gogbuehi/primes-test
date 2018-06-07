@@ -66,6 +66,33 @@ const multiplicationTable = {
       }
     }
   }
+};
+
+const limitedMultiplicationTable = {
+  it: {
+    shouldReturnEmptyArray: () => {
+      const table = MultiplicationTableGenerator.limitedMultiplicationTable([]);
+      assert.equal(table.length, 0);
+    },
+    shouldReturnAMatrixOneGreater: () => {
+      const limit = CONSTANTS.intArray.length + 1;
+      const tableSize = CONSTANTS.intArray.length + 1;
+      const table = MultiplicationTableGenerator.limitedMultiplicationTable(CONSTANTS.intArray, limit);
+      assert.equal(table.length, tableSize);
+      for (let i = 0; i < table.length; i++) {
+        assert.equal(table[i].length, tableSize);
+      }
+    },
+    shouldReturnLimitedTable: () => {
+      const limit = 3;
+      const tableSize = limit + 1;
+      const table = MultiplicationTableGenerator.limitedMultiplicationTable(CONSTANTS.intArray, limit);
+      assert.equal(table.length, tableSize);
+      for (let i = 0; i < table.length; i++) {
+        assert.equal(table[i].length, tableSize);
+      }
+    }
+  }
 }
 
 const describeMultiplicationMatrix = () => {
@@ -81,10 +108,17 @@ const describeMultiplicationTable = () => {
   it('should return a table with the multiples provided by the matrix', multiplicationTable.it.shouldReturnTableWithMultiples);
 };
 
+const describeLimitedMultiplicationTable = () => {
+  it('should return an empty array, if provided an empty array', limitedMultiplicationTable.it.shouldReturnEmptyArray);
+  it('should return an [n+1, n+1] table, if the limit is greater than the provided array', limitedMultiplicationTable.it.shouldReturnAMatrixOneGreater);
+  it('should return a limited size table, if the limit is smaller than the provided array', limitedMultiplicationTable.it.shouldReturnLimitedTable);
+
+};
 
 const describeMutliplicationTableGenerator = () => {
   describe('#multiplicationMatrix()', describeMultiplicationMatrix);
   describe('#multiplicationTable()', describeMultiplicationTable);
+  describe('#limitedMultiplicationTable()', describeLimitedMultiplicationTable);
 };
 
 describe('MultiplicationTableGenerator', describeMutliplicationTableGenerator);
