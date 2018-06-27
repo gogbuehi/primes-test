@@ -1,5 +1,5 @@
 {
-  "name": "primestest",
+  "name": "marker-analyser",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,9 @@
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
-    "locreq": "^1.1.0"
+    "locreq": "^1.1.0",
+    "requirejs": "^2.3.5",
+    "kd-tree-javascript": "^1.0.3"
   },
   "devDependencies": {
     "mocha": "^5.2.0"

@@ -1,0 +1,11 @@
+place0 10 10
+place1 21 21
+place2 33 33
+place3 55 55
+place4 100 100
+place5 101 101
+place6 50 50
+place7 1023 1023
+place8 923 923
+place9 574 574
+place10 574 900

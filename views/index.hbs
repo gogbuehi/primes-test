@@ -2,27 +2,8 @@
 <p class="message">{{message}}</p>
 <p>N: {{n}}</p>
 
-<div class="multiplication-table">
-    <div class="col-fixer">
-        <table>
-            {{#each table as |values x|}}
-                {{#unless x}}
-                    <thead>
-                {{/unless}}
-                        <tr class="row-{{x}}">
-                            {{#each values as |value y|}}
-                                <td class="col-{{y}}">{{value}}</td>
-                            {{/each}}
-                        </tr>
-                {{#unless x}}
-                    </thead>
-                {{/unless}}
-            {{else}}
-                <tr>
-                    <td>No table to display.</td>
-                </tr>
-            {{/each}}
-        </table>
-    </div>
+<div>
+    Result: <strong>{{result.name}}</strong> x: {{result.x}}, y: {{result.y}}
 </div>
-<p>Time Spent Finding Primes: {{timeRunning}}</p>
+
+<p>Time Spent Finding Most Isolated Node: {{timeRunning}}</p>

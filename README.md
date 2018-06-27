@@ -1,5 +1,5 @@
-# Primes Table
-Retrieve n Primes and Generate an n x n Multiplication Table
+# Isolated Point
+Retrieve the most isolated point in a set of points on a 2-D coordinate system
 
 ## Requirements
 `node 8.11.x`
@@ -7,33 +7,35 @@ Retrieve n Primes and Generate an n x n Multiplication Table
 ## Getting Started
 1. Command-line: `npm install`
 2. Command-line: `npm start`
-3. Go to: `http://localhost:3000?n=10`
+3. Go to: `http://localhost:3000?n=0`
 4. To change `n`, change the value of `n` in the querystring
+- `n=0`: Small data set
+- `n=1`: Big data set
+- `n=2`: Custom data set
 
 ## Running Tests
 - `npm test` 
 
 ## Notes
-- Because this relies on a web interface, the display table is limited in size. Otherwise, the return payload can be too
-can be too large to render and download in a timely manner. Display is limited to a table of 100 primes.
-- A suggestion would be to change the app to an API that allows for some akin to pagination. Keeping in mind that a
-table doesn't lend itself to pagination like a list does. 
-- On the page, the time spent calculating the primes is provided in microseconds towards the bottom of the page. Despite
-limit, `n` primes are still calculated.
+I have never worked with 2D search algorithms, so I decided to first see if I could apply some hypotheses to
+solving the problem: 
+1. Brute-force, which gave O((n^2 - n)/2) / O(n^2). This is fine
+for small sets of points but naturally does not scale.
+2. I hypothesised that averaging the coordinates might give me a single point to check against. The idea being
+that the point farthest from the average point being the most isolated. This was quick, but had many conceptual
+flaws. This was based on a cluster of points and an isolated point being the entire data set.
+3. I came across the idea of KD Trees to efficiently search for the nearest node. While the basic premise of a 
+KD Tree makes sense, and I understand the math it is utilising, I started to struggle at how best to implement
+the hypersphere intersection aspect of it.
+4. Given that I didn't want to spend too much time trying to reinvent the wheel, I switched to trying out a few
+npm libraries that implement KD Trees. The APIs for these libraries seem to imply that they are returning the
+nearest point, but my results for the "big" data set do not yield a correct answer
 
-## Nice features
-- Prime generation is quite fast. Reducing the set of primes to check against with each iteration brought huge
-improvements to the speed of the algorithm. My first pass took 4500ms to get 40,000 primes. After optimising, it's
-around 50ms.
+## Conclusion
+I enjoyed trying to solve this problem, and I feel like I have the premise of how to search for the most isolated
+point, given a set of points in a 2D space. Not having solved this type of problem before, I feel it wouldn't take
+much time to sit down and wrap my head around the missing implementation piece for my KD Node to appropriately solve
+for the nearest node.
 
-## More to do
-- There might be a way to save on how the table is built, since most of the multiples have 2 entries.
-- A better interface is in order. I would like this to be an API, rather than a monolithic app. The interface could load
-quickly, and make async requests for tables.
-- For massive tables to show up in a Web Interface, there needs to be a way to build the table on the client-side. Rather
-than having the full table as a matrix, the raw data can just be an indexed list of the distinct factor multiples. The
-client-side app can handle retrieving the raw data and building the HTML. This would include only requesting a set of
-factors-multiples that can be reasonably displayed, to deal with payload issues.
-- Better organisation of routes and app overall. The interface parts of the app don't have a design pattern to them.
 
  
