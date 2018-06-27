@@ -14,7 +14,19 @@ Retrieve the most isolated point in a set of points on a 2-D coordinate system
 - `n=2`: Custom data set
 
 ## Running Tests
-- `npm test` 
+- `npm test`
+
+## Key Files
+- `app/models/kd-node.js`
+- `app/utils/marker-analyser.js`
+- `routes/index.js`
+
+## Key Method
+- marker-anaylser.js: `kdIsoTree()`, `distanceBetweenPoints()`
+
+## Library Utilised
+- NPM `kd-tree-javascript` [https://www.npmjs.com/package/kd-tree-javascript]
+ 
 
 ## Notes
 I have never worked with 2D search algorithms, so I decided to first see if I could apply some hypotheses to

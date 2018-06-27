@@ -1,6 +1,6 @@
 const locreq          = require('locreq')(__dirname);
 const KdNode = locreq('app/models/kd-node');
-var requirejs = require('requirejs');
+const requirejs = require('requirejs');
 requirejs.config({
   //Use node's special variable __dirname to
   //get the directory containing this file.
@@ -18,23 +18,23 @@ const KdTree = requirejs('kd-tree-javascript');
 
 var exports = module.exports = {};
 
-var addPoints = (p1, p2) => {
+const addPoints = (p1, p2) => {
   return {
     x: p1.x + p2.x,
     y: p1.y + p2.y
   };
 };
-var dividePointBy = (p, divisor) => {
+const dividePointBy = (p, divisor) => {
   return {
     x: parseInt(p.x/divisor),
     y: parseInt(p.y/divisor)
   }
 };
-var distanceBetweenPoints = (p1, p2) => {
+const distanceBetweenPoints = (p1, p2) => {
   if (p1.name === p2.name) return Number.MAX_VALUE;
   return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 };
-var averagePoint = (coordinateArray) => {
+const averagePoint = (coordinateArray) => {
   let sumOfPoints = {
     x: 0,
     y: 0
@@ -168,13 +168,11 @@ exports.kdIsoTree = (coordinateArray) => {
     nearestNodeToI = kdTree.nearest(coordinateArray[i], 1);
     nearestToIDistance = distanceBetweenPoints(currentNode, nearestNodeToI[0][0]);
 
-
     if (nearestToIDistance > nearestDistance) {
       console.log("ISOLATED", nearestToIDistance, nearestNodeToI[0]);
       nearestDistance = nearestToIDistance;
       isolatedNode = coordinateArray[i];
     }
-
   }
 
   // This portion actually determines that the library provided is not
@@ -196,8 +194,6 @@ exports.kdIsoTree = (coordinateArray) => {
   // }
   // console.log("MINIMUM DISTANCE:", minimumDistance, isolatedPointB);
 
-
-  
   return isolatedNode;
 };
 
